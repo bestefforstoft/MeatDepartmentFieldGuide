@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.MD" />
+  </Folder>
+  <Project Path="../MeatDepartmentFieldGuide.App/MeatDepartmentFieldGuide.App.csproj" />
+  <Project Path="../MeatDepartmentFieldGuide.Core/MeatDepartmentFieldGuide.Core.csproj" />
+  <Project Path="../MeatDepartmentFieldGuide.Infrastructure/MeatDepartmentFieldGuide.Infrastructure.csproj" />
+  <Project Path="../MeatDepartmentFieldGuide.Tests/MeatDepartmentFieldGuide.Tests.csproj" />
+  <Project Path="MeatDepartmentFieldGuide.Application.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
