@@ -1,469 +1,168 @@
-##
-## THIS IS THE BASE CODE SO FAR AND DOES CONTAIN ERRORS AND IS NOT COMPLETE
-##           THE BASIC CONCEPT IS DESCRIBED BELOW
-##
-===========================================================================
 # Meat Department Field Guide
 
 ## Overview
 
-**Meat Department Field Guide** is a cross-platform quick-reference and knowledge application designed to put practical meat-cutting information in one place.
+**Meat Department Field Guide** is a cross-platform quick-reference, knowledge, and training platform for meat cutting, fabrication, equipment, and related culinary knowledge.
 
-The idea came from a simple problem: people working with meat often need an answer **right now**. A new meat cutter may need to identify a primal or remember how a particular cut is produced. An experienced cutter may know the answer but occasionally need to verify a specification, terminology, knife choice, or procedure. A backyard griller may have purchased a cut they do not recognize and want to know what it is and how to prepare it.
+The project begins with **beef** because beef fabrication is complex and provides a strong first domain. The architecture is intentionally designed so the same underlying knowledge can eventually be presented through:
 
-Today, that information is often scattered across:
+- Mobile/desktop application
+- Browser-based Web UI
+- LMS-compatible training packages, including SCORM
+- Future enterprise integrations and APIs
 
-- YouTube videos
-- Search engines
-- Training documents
-- Printed references
-- Equipment manuals
-- USDA/industry documentation
-- Personal experience
-- Coworkers who may simply say "look it up on YouTube"
+The goal is **one structured knowledge platform with multiple presentation clients**, not three unrelated products.
 
-The **Meat Department Field Guide** is intended to provide a structured, searchable, practical reference that can grow from a beef-focused guide into a broader meat-processing and culinary knowledge system.
+> **Put the right information in front of the right person at the moment they need it.**
 
 ---
 
-## The Need This App Fills
+# Product Vision
 
-The application addresses a gap between **formal training/reference material** and **real-world, at-the-workbench information**.
+```text
+                 MEAT KNOWLEDGE PLATFORM
+                          |
+             +------------+------------+
+             |            |            |
+          REFERENCE     TRAINING    ENTERPRISE
+             |            |            |
+          Mobile        SCORM         LMS
+          Web UI        Courses       Integration
+          Desktop       Assessments   Reporting
+```
 
-Traditional training can teach someone the fundamentals, but people forget details. Experienced workers encounter unfamiliar cuts, unusual situations, equipment problems, or terminology differences. Hobbyists and aspiring cooks face the opposite problem: they may have access to excellent ingredients but lack the knowledge to identify, cut, trim, or prepare them.
-
-The Field Guide brings related information together around the thing the user is actually working with.
-
-For example:
-
-> **I have this piece of beef. What is it? Where did it come from? What cuts can I make from it? Which knife should I use? How do I make the cut? What are the alternatives?**
-
-The application should be able to progressively answer those questions without forcing the user to search several unrelated sources.
+The knowledge layer is the common foundation. Presentation can change without rewriting the underlying meat knowledge.
 
 ---
 
 # Primary Users
 
-The application is intentionally broader than a training tool for grocery-store employees.
+The project intentionally targets both individuals and organizations.
 
-## 1. Apprentice / New Meat Cutter
+## 1. Enterprise / Workforce Training
 
-### Problem
+Large organizations are a major long-term target.
 
-A new meat cutter is learning a large amount of information at once:
+Potential customers include:
 
-- Beef anatomy
-- Primals and subprimals
-- Cut names
-- Alternative names
-- Knife selection
-- Trimming techniques
-- Cutting procedures
-- Portioning
-- Packaging
-- Equipment operation
-- Department terminology
+- Grocery and warehouse retailers
+- Hotels and hospitality organizations
+- Restaurants and food-service organizations
+- Culinary schools
+- Food-production companies
+- Meat-processing organizations
+- Companies with large frontline workforces
 
-It is unrealistic to expect someone to remember everything immediately.
+Examples of the type of organization this could eventually interest include **Costco, Hilton, and similar large employers**.
 
-### Use Case
+Potential enterprise capabilities:
 
-A new cutter is given an unfamiliar piece of beef.
+- Standardized reference material
+- Supplemental employee training
+- Searchable procedures
+- Equipment information
+- Knowledge checks
+- Assessments
+- Progress/completion tracking
+- Company-specific content
+- Department-specific procedures
+- LMS integration
+- SCORM course packages
+- Future API integrations
 
-They can:
+Company-specific information should remain separate from the neutral core knowledge base.
 
-1. Select **Beef**
-2. Navigate to the appropriate region
-3. Identify the primal
-4. Select the subprimal
-5. Select the desired cut
-6. Review the cutting procedure
-7. See recommended knife types
-8. See which of their own knives are appropriate
-9. Review images and reference material
-10. Watch an associated instructional video if one is available
+```text
+Company
+  |
+  +-- Training
+  |     +-- Beef Cutting Fundamentals
+  |     +-- Equipment Safety
+  |     +-- Department Procedures
+  |
+  +-- Reference
+  |     +-- Approved Cuts
+  |     +-- Approved Equipment
+  |     +-- Internal Procedures
+  |
+  +-- Employees
+        +-- Progress
+        +-- Assessments
+```
 
-The Field Guide acts as a **pocket reference and supplemental training aid**.
-
-It does not replace formal training, supervision, workplace safety rules, or manufacturer instructions.
+The initial application does not need all of this. The architecture must simply leave room for it.
 
 ---
 
-# 2. Journeyman / Experienced Meat Cutter
+## 2. Apprentice / New Meat Cutter
 
-### Problem
+A new cutter is learning beef anatomy, primals, subprimals, cut names, knife selection, trimming, fabrication, portioning, packaging, equipment operation, and department terminology.
+
+The Field Guide acts as a **pocket reference and supplemental training aid**. It does not replace formal training, supervision, workplace safety rules, or manufacturer instructions.
+
+---
+
+## 3. Journeyman / Experienced Meat Cutter
 
 Experience does not eliminate the need for reference information.
 
-An experienced cutter may encounter:
+An experienced cutter may need to verify an unfamiliar cut, regional terminology, an IMPS specification, a fabrication procedure, knife selection, available cuts, or an equipment error code.
 
-- A cut they have not produced recently
-- Regional terminology differences
-- A different specification
-- An unfamiliar subprimal
-- A less-common fabrication procedure
-- A new piece of equipment
-- An equipment error code
-- A question from a newer employee
-
-### Use Case
-
-A journeyman cutter can quickly search for:
-
-> "What is the IMPS number for this?"
-
-> "What cuts come from this subprimal?"
-
-> "Which knife is normally used for this?"
-
-> "What is this cut called?"
-
-> "How do I break this down?"
-
-> "What does this wrapper error mean?"
-
-The application should therefore be useful even to someone who already has years of experience.
+The application should remain useful to someone with years of experience.
 
 ---
 
-# 3. Backyard Grill Enthusiast
+## 4. Department Manager / Lead
 
-### Problem
+Managers and leads may use the system to:
 
-Home cooks often purchase meat without knowing exactly what they have or how best to use it.
-
-A person may encounter an unfamiliar cut at a grocery store, butcher shop, farmers market, or warehouse retailer.
-
-### Use Case
-
-The user can:
-
-- Search for a cut
-- Learn where it comes from
-- See alternate names
-- Understand its characteristics
-- Learn appropriate preparation methods
-- Explore trimming information
-- Find related cuts
-- Review recommended cooking approaches
-
-Example:
-
-> "I bought a tri-tip. What exactly is it, where does it come from, and what should I do with it?"
-
-The Field Guide can provide the meat-processing context while optionally connecting the user to cooking resources.
+- Answer employee questions
+- Review procedures
+- Look up equipment information
+- Provide supplemental training
+- Maintain department-specific references
+- Record approved equipment information
+- Support onboarding
 
 ---
 
-# 4. Meat Smoker / BBQ Enthusiast
+## 5. Culinary Instructor / Trainer
 
-Smoking and barbecue involve a particularly strong relationship between **cut identification, trimming, preparation, and cooking**.
-
-### Use Cases
-
-A smoker may want to know:
-
-- What cut they have
-- How it relates to the primal
-- How much exterior fat to remove
-- Which seams should be separated
-- Whether the cut is better suited to smoking, roasting, grilling, braising, etc.
-- What other cuts can be obtained from the same subprimal
-- What terminology different regions use
-
-The application can eventually provide a path such as:
-
-**Primal → Subprimal → Cut → Trim → Preparation → Cooking Resources**
-
-The Field Guide does not need to become a recipe application to be valuable to barbecue enthusiasts.
+Instructors can use the Field Guide as a supplemental resource for primal identification, cut relationships, knife selection, fabrication, terminology, visual references, and training exercises.
 
 ---
 
-# 5. Aspiring Chef / Culinary Student
+## 6. Aspiring Chef / Culinary Student
 
-### Problem
-
-Culinary students learn both cooking and ingredient knowledge, but meat fabrication can be a specialized subject.
-
-The application can serve as a reference between classroom instruction and hands-on practice.
-
-### Use Cases
-
-A culinary student can:
-
-- Study meat anatomy
-- Learn primal/subprimal relationships
-- Learn professional terminology
-- Review cutting procedures
-- Study knife selection
-- Compare cuts
-- Learn alternative names
-- Review reference material
-- Use images as visual study aids
-
-This makes the application useful as a **culinary reference tool**, not merely a grocery-store employee application.
+The Field Guide can bridge classroom instruction and hands-on practice through meat anatomy, primal/subprimal relationships, terminology, cutting procedures, knife selection, alternative names, and visual references.
 
 ---
 
-# 6. Serious Home Butcher / Hunter
+## 7. Serious Home Butcher / Hunter
 
-Another potential audience is people who process their own meat.
-
-Examples include:
-
-- Hunters
-- Small-scale livestock owners
-- Homesteaders
-- Serious home butchers
-- Meat-processing hobbyists
-
-Their needs overlap heavily with professional meat cutting:
-
-- Identification
-- Anatomy
-- Fabrication
-- Knife selection
-- Trimming
-- Portioning
-- Preservation
-- Terminology
-
-Future versions could expand beyond beef into species commonly processed by these users.
+Potential users include hunters, homesteaders, small-scale livestock owners, serious home butchers, and meat-processing hobbyists.
 
 ---
 
-# 7. Culinary Instructor / Trainer
+## 8. Meat Smoker / BBQ Enthusiast
 
-The Field Guide can also function as a supplemental teaching resource.
-
-An instructor could use it to demonstrate:
-
-- Primal identification
-- Cut relationships
-- Knife selection
-- Fabrication procedures
-- Terminology
-- Visual references
-
-Because the information is structured in a database rather than hard-coded into individual screens, educational content can grow independently of the UI.
-
----
-
-# 8. Department Manager / Lead
-
-A department manager may use the application differently from an apprentice.
-
-Potential uses include:
-
-- Quickly answering employee questions
-- Looking up equipment information
-- Reviewing procedures
-- Providing supplemental training
-- Creating department-specific reference material
-- Recording approved equipment information
-- Maintaining internal notes
-
-A future version could support controlled department/company-specific content without changing the fundamental architecture.
-
----
-
-# Core User Experience
-
-The application should generally follow a simple principle:
-
-> **Start with what the user has, then help them discover what they need.**
-
-For example:
+A user may follow:
 
 ```text
-Beef
-  ↓
-Region
-  ↓
-Primal
-  ↓
-Subprimal
-  ↓
-Cut
-  ↓
-What can I do with it?
-  ├── Identify
-  ├── Fabricate
-  ├── Trim
-  ├── Portion
-  ├── Cook / Prepare
-  ├── Recommended Knives
-  ├── Images
-  ├── FAQs
-  └── External Resources
+Primal → Subprimal → Cut → Trim → Preparation → Cooking Resources
 ```
 
-Search should provide another path:
-
-```text
-Search
-  ↓
-"cimeter"
-  ↓
-Knife Type
-  ↓
-Cuts / Procedures
-```
-
-Or:
-
-```text
-Search
-  ↓
-"bottom round"
-  ↓
-Cut
-  ↓
-Parent Subprimal
-  ↓
-Parent Primal
-  ↓
-Related Procedures
-```
+The Field Guide does not need to become a recipe application to be useful to this audience.
 
 ---
 
-# Knife Personalization
+## 9. Backyard Grill Enthusiast
 
-One of the Field Guide's distinguishing features is that knife information is not limited to a static list.
-
-A user can maintain a personal knife inventory.
-
-For example:
-
-```text
-My Knives
-
-├── "The Excalibur"
-│   ├── Breaking Knife
-│   ├── German steel
-│   └── 10 inch
-│
-├── "The Little Bastard"
-│   ├── Boning Knife
-│   └── 6 inch
-│
-└── "Big Red"
-    └── Cimeter
-```
-
-The user can:
-
-- Photograph their knives
-- Give them custom names
-- Record manufacturer/model
-- Record blade length
-- Record steel
-- Add notes
-- Associate a knife with a knife type
-
-When viewing a procedure, the application can prioritize the user's own suitable knives.
-
-Example:
-
-```text
-Recommended for this cut
-
-YOUR KNIVES
-✓ The Little Bastard
-  Boning Knife
-
-✓ Big Red
-  Cimeter
-
-SUGGESTED
-Breaking Knife
-```
-
-After a user has seen the suggestion several times, the application can reduce repetitive information and show a compact suggestion instead.
-
-This keeps the interface useful rather than cluttered.
+A home cook can search an unfamiliar cut and learn what it is, where it comes from, alternate names, characteristics, trimming, preparation methods, related cuts, and cooking approaches.
 
 ---
 
-# Primal Identification
-
-A future feature will allow the user to photograph a piece of meat and attempt identification.
-
-The intended process is:
-
-```text
-Take Photo
-    ↓
-Local Reference Matching
-    ↓
-Candidate Match
-    ↓
-User Confirmation
-   / \
- OK   Try Again
-```
-
-If local identification is unsuccessful, the application may optionally use an external identification service.
-
-Privacy is important here.
-
-The application should:
-
-- Clearly explain when an image leaves the device
-- Request appropriate permission/consent
-- Prefer local processing when practical
-- Avoid silently uploading user photographs
-- Clearly distinguish local results from external results
-
----
-
-# Equipment Troubleshooting
-
-The Field Guide is also intended to address a common workplace problem:
-
-> **The equipment broke, the manager isn't here, and nobody remembers what the error means.**
-
-Automated wrappers are an initial target.
-
-A troubleshooting entry may contain:
-
-```text
-Equipment
-    ↓
-Manufacturer
-    ↓
-Model
-    ↓
-Problem / Error Code
-    ↓
-What the operator can check
-    ↓
-Possible causes
-    ↓
-Safe corrective action
-    ↓
-STOP / CALL AUTHORIZED SERVICE
-```
-
-The system should distinguish between:
-
-- Operator-level checks
-- Cleaning/setup issues
-- Consumable/material issues
-- Configuration issues
-- Maintenance requiring qualified personnel
-- Conditions where operation should stop
-
-Equipment information should be based on appropriate manuals and authoritative documentation.
-
----
-
-# Knowledge Architecture
-
-The application is designed around a structured knowledge hierarchy rather than individual hard-coded pages.
-
-At its core:
+# Core Knowledge Architecture
 
 ```text
 Meat
@@ -479,9 +178,7 @@ Meat
                      └── Related Cuts
 ```
 
-This architecture allows additional species to be added without redesigning the application.
-
-For example:
+The first release focuses heavily on beef, while the architecture supports:
 
 ```text
 Beef
@@ -494,215 +191,422 @@ Poultry
 Game
 ```
 
-The first release will focus heavily on beef.
+Adding another species should primarily involve adding content rather than rewriting UI code.
 
 ---
 
-# Design Goals
+# Reference and Training Are Different Things
 
-## Practical
+Reference content answers questions such as:
 
-The application should answer real questions quickly.
+- What is this cut?
+- Where does it come from?
+- Which knife is appropriate?
+- How is it produced?
+- What does this error code mean?
 
-## Searchable
+Training content can turn the same knowledge into:
 
-Users should not need to know the exact terminology before finding useful information.
+```text
+Lesson
+  ↓
+Instruction
+  ↓
+Demonstration
+  ↓
+Knowledge Check
+  ↓
+Assessment
+  ↓
+Completion
+```
 
-## Visual
+This distinction lets the product remain a useful field reference while also becoming a formal training product.
 
-Meat identification and fabrication are highly visual subjects.
+---
 
-## Extensible
+# Mobile, Web, and SCORM
 
-Adding another species should primarily involve adding content rather than rewriting the application.
+## Mobile / Desktop
 
-## Offline-Friendly
+The installed application can provide offline reference material, SQLite/local data, camera access, local images, personal knives, device capabilities, and native packaging.
 
-Core reference material should remain available without an Internet connection whenever practical.
+The planned .NET direction is **.NET MAUI with a web-oriented UI approach such as Blazor Hybrid**, allowing substantial UI reuse.
 
-## Privacy-Conscious
+## Web UI
 
-Local data should remain local unless the user explicitly chooses functionality requiring external services.
+A browser client provides no-install access, shared/current content, larger-screen workflows, administration possibilities, and broad device access.
 
-## Non-Commercial by Default
+A browser cannot simply open the native SQLite file used by an installed application. The Web client therefore needs an appropriate Web data layer rather than directly depending on the local mobile database.
 
-The application should not feel like a shopping application.
+## SCORM
 
-Future sponsorship opportunities may exist, particularly with knife manufacturers or meat-industry businesses, but sponsorship should remain separate from factual recommendations.
+SCORM is treated as a **training delivery format**, not the core architecture.
 
-## Technically Sound
+A SCORM package can present selected Field Guide knowledge as an LMS course and report progress, completion, assessment results, and pass/fail status.
 
-The project is intended to demonstrate professional software engineering practices:
+The core knowledge system remains independent of SCORM. Future LMS integrations may also consider standards such as xAPI/cmi5 where appropriate.
 
-- .NET MAUI
+---
+
+# Intended Platform Architecture
+
+```text
+                         CORE DOMAIN
+                             |
+                     APPLICATION SERVICES
+                             |
+                +------------+-------------+
+                |            |             |
+             Mobile        Web          Training
+             Client        Client         Client
+                |            |             |
+           MAUI/Blazor    Browser       SCORM
+                |            |             |
+                +------------+-------------+
+                             |
+                     Shared APIs/Services
+                             |
+                    Knowledge/Data Layer
+                             |
+                    Local / Server Data
+```
+
+---
+
+# Core User Experience
+
+> **Start with what the user has, then help them discover what they need.**
+
+```text
+Beef
+  ↓
+Region
+  ↓
+Primal
+  ↓
+Subprimal
+  ↓
+Cut
+  ↓
+What can I do with it?
+
+  Identify
+  Fabricate
+  Trim
+  Portion
+  Cook / Prepare
+  Recommended Knives
+  Images
+  FAQs
+  External Resources
+```
+
+Search provides another path:
+
+```text
+Search → "cimeter" → Knife Type → Cuts / Procedures
+```
+
+---
+
+# Knife Personalization
+
+Users can maintain their own knife inventory with custom name, manufacturer, model, blade length, steel, knife type, notes, and local photograph.
+
+User-owned knives always receive priority when showing suitable tools.
+
+```text
+RECOMMENDED
+
+YOUR KNIVES
+  ✓ The Little Bastard — Boning Knife
+  ✓ Big Red — Cimeter
+
+SUGGESTED
+  Breaking Knife
+```
+
+Commercial recommendations must remain neutral and separate from factual suitability.
+
+---
+
+# Primal Identification
+
+Future workflow:
+
+```text
+Take Photo
+    ↓
+Local Reference Matching
+    ↓
+Candidate Match
+    ↓
+User Confirmation
+   /  OK  Try Again
+```
+
+If local identification fails, an external service may optionally be used with appropriate consent.
+
+Privacy requirements include local processing when practical, clear explanation when images leave the device, appropriate permissions, no silent uploads, and clear distinction between local and external results.
+
+---
+
+# Equipment Troubleshooting
+
+A major workplace use case is:
+
+> **The equipment broke, the manager isn't here, and nobody remembers what the error means.**
+
+```text
+Equipment
+  ↓
+Manufacturer
+  ↓
+Model
+  ↓
+Problem / Error Code
+  ↓
+Operator Checks
+  ↓
+Possible Causes
+  ↓
+Safe Corrective Action
+  ↓
+STOP / CALL AUTHORIZED SERVICE
+```
+
+Information should distinguish operator checks, cleaning/setup issues, consumables, configuration, qualified maintenance, and stop-operation conditions.
+
+---
+
+# Commercial Boundaries
+
+The Field Guide is **knowledge-first, not sales-first**.
+
+Factual suitability must never change because a manufacturer or retailer sponsors the application.
+
+Potential future sponsorship:
+
+```text
+Factual Recommendation
+        ↓
+Optional Sponsored Information
+        ↓
+Optional External Search
+```
+
+A sponsor cannot purchase a higher factual suitability ranking.
+
+---
+
+# Development Strategy
+
+## Phase 1 — Stabilize the Foundation
+
+1. Standardize SQLite implementation
+2. Establish one authoritative database path/connection system
+3. Finish migrations
+4. Replace/fix database seeding
+5. Finish repositories
+6. Finish application services
+7. Add integration tests
+8. Verify the first complete data path
+
+Target:
+
+```text
+Beef
+ → Region
+ → Primal
+ → Subprimal
+ → Cut
+ → Procedure
+ → Knife Suitability
+ → User Knives
+ → Recommendation
+```
+
+## Phase 2 — Platform Foundation
+
+Add structured content, training, search/FTS5, media, external resources, favorites, settings, progress/completion, caching, and logging.
+
+## Phase 3 — Clients
+
+Build:
+
+1. Mobile/desktop application
+2. Web UI
+3. SCORM training package
+
+The goal is to release these as parts of the same product rather than unrelated projects.
+
+## Phase 4 — Enterprise
+
+Add when the core product is proven:
+
+- Organizations/tenants
+- Company-specific content
+- Roles and permissions
+- Administration
+- Course authoring
+- Employee enrollment
+- Progress reporting
+- Assessments
+- LMS integration
+- API access
+- Enterprise deployment options
+
+---
+
+# Technical Direction
+
+The project favors:
+
 - C#
-- SQLite
-- Dependency Injection
-- Repository patterns where appropriate
-- Service-oriented application logic
+- Modern .NET
+- .NET MAUI
+- Blazor/web UI where it provides real reuse
+- SQLite for local/offline storage
+- A suitable server database for shared Web/enterprise deployments
+- Dependency injection
+- Repository/service separation where appropriate
 - Async programming
 - Cancellation support
 - Caching
 - Full-text search
-- Testable architecture
 - Database migrations
-- Structured domain models
+- Automated testing
 - Clear separation of concerns
 
-The project should favor maintainability and clarity over unnecessary architectural complexity.
+The project deliberately avoids architectural complexity that does not solve a real problem.
+
+> **If future-you has to debug it at 2 AM, future-you should understand it.**
 
 ---
 
-# Example User Scenarios
-
-## "I'm new and don't know what this is."
-
-**Photo / Search → Candidate Primal → Confirm → Learn**
-
----
-
-## "I've cut this before, but I haven't done it in six months."
-
-**Search → Cut → Procedure → Review**
-
----
-
-## "Which knife should I use?"
-
-**Cut → Recommended Knives → My Knives → Select Knife**
-
----
-
-## "I only have these three knives."
-
-**My Knives → Knife Type → Compatible Cuts**
-
----
-
-## "What can I make from this?"
-
-**Primal → Subprimal → Available Cuts**
-
----
-
-## "What is this cut called?"
-
-**Search / Identification → Cut → Alternate Names**
-
----
-
-## "I bought this at Costco and have no idea what it is."
-
-**Search / Photo → Identification → Cut Information → Preparation Resources**
-
----
-
-## "My wrapper is throwing an error."
-
-**Equipment → Wrapper → Model → Error Code → Troubleshooting**
-
----
-
-## "I'm studying for culinary school."
-
-**Beef → Region → Primal → Subprimal → Cut → Study**
-
----
-
-## "I'm smoking brisket this weekend."
-
-**Brisket → Anatomy → Trim → Preparation → Cooking Resources**
-
----
-
-# Long-Term Vision
-
-The long-term goal is not simply to create an electronic butcher's handbook.
-
-The goal is to create a **structured meat knowledge platform** that connects:
+# Planned Solution Structure
 
 ```text
-IDENTIFICATION
-      ↓
-ANATOMY
-      ↓
-FABRICATION
-      ↓
-KNIFE SELECTION
-      ↓
-PROCEDURE
-      ↓
-PREPARATION
-      ↓
-COOKING
+MeatDepartmentFieldGuide.sln
+│
+├── MeatDepartmentFieldGuide.Core
+│   ├── Entities
+│   ├── DTOs
+│   ├── Interfaces
+│   └── Enums
+│
+├── MeatDepartmentFieldGuide.Application
+│   ├── Services
+│   ├── Search
+│   ├── Identification
+│   └── Recommendations
+│
+├── MeatDepartmentFieldGuide.Infrastructure
+│   ├── SQLite
+│   ├── Repositories
+│   ├── Cache
+│   ├── ExternalProviders
+│   └── Media
+│
+├── MeatDepartmentFieldGuide.App
+│   ├── Views
+│   ├── ViewModels
+│   ├── Resources
+│   └── Platforms
+│
+└── MeatDepartmentFieldGuide.Tests
 ```
 
-while remaining useful at multiple levels of expertise.
-
-A new employee should be able to use it.
-
-A journeyman should still find it useful.
-
-A backyard smoker should understand it.
-
-A culinary student should learn from it.
-
-An experienced home butcher should be able to reference it.
-
-That range of users is intentional.
+Web and SCORM clients can be added as separate presentation projects while keeping domain/application logic shared.
 
 ---
 
-# Project Status
+# Engineering Principles
 
-The initial development strategy is:
-
-1. Establish the domain model
-2. Build the SQLite database
-3. Implement migrations
-4. Seed the initial beef knowledge
-5. Implement repositories
-6. Implement application services
-7. Build automated tests
-8. Create the first MAUI vertical slice
-9. Implement search
-10. Implement knife personalization
-11. Implement media/resources
-12. Implement equipment troubleshooting
-13. Implement image identification
-14. Expand to additional species
-
-The first major milestone is:
-
-> **Beef → Region → Primal → Subprimal → Cut → Procedure → Knife Suitability → User Knives**
-
-Once that complete path works, the application has a functional foundation on which the remaining features can be built.
+1. Knowledge is separate from presentation.
+2. Reference content is separate from training delivery.
+3. The database is a core product component.
+4. No SQL belongs in ViewModels.
+5. Relationships should be explicit and understandable.
+6. Use abstractions when they solve a real problem.
+7. Prefer maintainability over architectural decoration.
+8. Core functionality should work offline when practical.
+9. Privacy should be designed in rather than added later.
+10. Sponsorship must not compromise factual neutrality.
+11. Enterprise functionality should extend the product rather than distort the basic user experience.
+12. The same knowledge should be reusable across mobile, Web, and training experiences.
 
 ---
 
-# Why This Project Matters
+# Release Vision
 
-The Field Guide is both a practical application and a software engineering project.
+The intention is to release the Field Guide as a coordinated product rather than releasing an isolated mobile application and retrofitting the enterprise/training system later.
 
-Its value comes from solving a real-world information problem while providing an opportunity to demonstrate:
+The first public version can still be focused:
 
-- Domain modeling
-- Relational database design
-- Cross-platform application development
-- Search architecture
-- Offline-first thinking
-- Media management
-- Personalization
-- External service integration
-- Testing
-- Maintainable architecture
+```text
+BEEF
+  + Knives
+  + Procedures
+  + Search
+  + Equipment
+```
 
-Most importantly, the application should be useful enough that someone can actually reach for it when they need an answer.
+while the architecture supports:
+
+```text
+                FIELD GUIDE
+                    |
+        +-----------+-----------+
+        |           |           |
+      MOBILE       WEB        SCORM
+        |           |           |
+        +-----------+-----------+
+                    |
+             KNOWLEDGE PLATFORM
+                    |
+             ENTERPRISE READY
+```
+
+The first release does not need every enterprise feature. It does need to avoid architectural decisions that would make those features unnecessarily expensive later.
 
 ---
 
-## Guiding Principle
+# Current Project Status
+
+The immediate priority is to get the existing database/backend foundation into a clean, buildable state **before beginning the new front-end clients**.
+
+```text
+Existing Code
+    ↓
+Fix SQLite Architecture
+    ↓
+Fix Migrations
+    ↓
+Fix Seeder
+    ↓
+Finish Repositories
+    ↓
+Finish Services
+    ↓
+Automated Tests
+    ↓
+Successful Build
+    ↓
+Mobile/Web UI Foundation
+    ↓
+SCORM Foundation
+```
+
+The next development step is therefore **not more UI**. It is cleaning the existing source so we have a trustworthy buildable foundation.
+
+---
+
+# Guiding Principle
 
 > **Put the right information in front of the right person at the moment they need it.**
 
-The application should make that happen without making the user fight the interface.
+Whether that person is a new meat cutter at a cutting table, an experienced employee troubleshooting equipment, a culinary student, a homeowner preparing dinner, or an enterprise employee completing required training, the goal is the same:
+
+**Make useful knowledge easier to find, understand, and use.**
